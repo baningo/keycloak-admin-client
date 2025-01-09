@@ -355,7 +355,7 @@ class KeycloakClient extends GuzzleClient
             ]),
             function ($response) {
                 $responseBody = $response->getBody()->getContents();
-                return json_decode($responseBody, true) ?? ['content' => $responseBody];
+                return ['statusCode' => $response->getStatusCode(), 'body' => json_decode($responseBody, true) ?? ['content' => $responseBody]];
             },
             null,
             $config
